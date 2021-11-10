@@ -84,7 +84,7 @@ export default class Main extends Component {
 
 		function renderBuild(build) {
 			return (
-				<Link to={`/${repo.full_name}/${build.number}`} key={build.number}>
+				<Link to={`/${repo.owner}/${repo.name}/${build.number}`} key={build.number}>
 					<Item build={build} />
 				</Link>
 			);

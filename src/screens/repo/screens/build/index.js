@@ -206,8 +206,8 @@ export default class BuildLogs extends Component {
 								{parent.children.map(function(child) {
 									return (
 										<Link
-											to={`/${repo.full_name}/${build.number}/${child.pid}`}
-											key={`${repo.full_name}-${build.number}-${child.pid}`}
+											to={`/${repo.owner}/${repo.name}/${build.number}/${child.pid}`}
+											key={`${repo.owner}/${repo.name}-${build.number}-${child.pid}`}
 										>
 											<ProcListItem
 												key={child.pid}
@@ -260,9 +260,9 @@ export default class BuildLogs extends Component {
 							{build.procs.map(child => {
 								return (
 									<Link
-										to={`/${repo.full_name}/${build.number}/${child.children[0]
+										to={`/${repo.owner}/${repo.name}/${build.number}/${child.children[0]
 											.pid}`}
-										key={`${repo.full_name}-${build.number}-${child.children[0]
+										key={`${repo.owner}/${repo.name}-${build.number}-${child.children[0]
 											.pid}`}
 									>
 										<MatrixItem
@@ -290,7 +290,7 @@ export class BuildLogsTitle extends Component {
 			<Breadcrumb
 				elements={[
 					<Link to={`/${owner}/${repo}`} key={`${owner}-${repo}`}>
-						{owner} / {repo}
+						{owner.replace("--", " / ")} / {repo}
 					</Link>,
 					SEPARATOR,
 					<Link

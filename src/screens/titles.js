@@ -23,7 +23,7 @@ const accountRepos = () => <Title render="Repositories | drone" />;
 const loginTitle = () => <Title render="Login | drone" />;
 
 const repoTitle = ({ match }) => (
-	<Title render={`${match.params.owner}/${match.params.repo} | drone`} />
+	<Title render={`${match.params.owner.replace("--", " / ")}/${match.params.repo} | drone`} />
 );
 
 const defautTitle = () => <Title render="Welcome | drone" />;

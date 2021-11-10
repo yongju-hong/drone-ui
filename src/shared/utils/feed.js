@@ -12,7 +12,8 @@ export const fetchFeed = (tree, client) => {
 			let list = {};
 			let sorted = results.sort(compareFeedItem);
 			sorted.map(repo => {
-				list[repo.full_name] = repo;
+				var full_name = `${repo.owner}/${repo.name}`;
+				list[full_name] = repo;
 			});
 			if (sorted && sorted.length > 0) {
 				tree.set(["feed", "latest"], sorted[0]);
@@ -52,13 +53,14 @@ export const subscribeToFeed = (tree, client) => {
 	return client.on(data => {
 		const { repo, build } = data;
 
-		if (tree.exists("feed", "data", repo.full_name)) {
-			const cursor = tree.select(["feed", "data", repo.full_name]);
+		var full_name = `${repo.owner}/${repo.name}`;
+		if (tree.exists("feed", "data", full_name)) {
+			const cursor = tree.select(["feed", "data", full_name]);
 			cursor.merge(build);
 		}
 
-		if (tree.exists("builds", "data", repo.full_name)) {
-			tree.set(["builds", "data", repo.full_name, build.number], build);
+		if (tree.exists("builds", "data", full_name)) {
+			tree.set(["builds", "data", full_name, build.number], build);
 		}
 	});
 };

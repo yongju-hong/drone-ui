@@ -10,7 +10,7 @@ export default class Header extends Component {
 				<Breadcrumb
 					elements={[
 						<Link to={`/${owner}/${repo}`} key={`${owner}-${repo}`}>
-							{owner} / {repo}
+							{owner.replace("--", " / ")} / {repo}
 						</Link>,
 					]}
 				/>

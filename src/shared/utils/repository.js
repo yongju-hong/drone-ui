@@ -16,7 +16,7 @@ export const fetchRepository = (tree, client, owner, name) => {
 	client
 		.getRepo(owner, name)
 		.then(repo => {
-			tree.set(["repos", "data", repo.full_name], repo);
+			tree.set(["repos", "data", `${owner}/${name}`], repo);
 			tree.set(["repo", "loaded"], true);
 		})
 		.catch(error => {

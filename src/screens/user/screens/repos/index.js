@@ -41,10 +41,11 @@ export default class UserRepos extends Component {
 
 	handleToggle(repo, e) {
 		const { dispatch, drone } = this.props;
+		var owner = repo.owner.replace("/", "--");
 		if (e.target.checked) {
-			dispatch(enableRepository, drone, repo.owner, repo.name);
+			dispatch(enableRepository, drone, owner, repo.name);
 		} else {
-			dispatch(disableRepository, drone, repo.owner, repo.name);
+			dispatch(disableRepository, drone, owner, repo.name);
 		}
 	}
 
@@ -106,10 +107,10 @@ export default class UserRepos extends Component {
 		return (
 			<Item
 				key={repo.full_name}
-				owner={repo.owner}
+				owner={repo.owner.replace("--", "/")}
 				name={repo.name}
 				active={repo.active}
-				link={`/${repo.full_name}`}
+				link={`/${repo.owner}/${repo.name}`}
 				onchange={this.handleToggle.bind(this, repo)}
 			/>
 		);

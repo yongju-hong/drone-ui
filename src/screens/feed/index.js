@@ -79,7 +79,7 @@ const renderFeed = list => {
 
 const renderItem = item => {
 	return (
-		<Link to={`/${item.full_name}`} key={item.full_name}>
+		<Link to={`/${item.owner}/${item.name}`} key={item.full_name}>
 			<Item item={item} />
 		</Link>
 	);
